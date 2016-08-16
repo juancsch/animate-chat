@@ -1,0 +1,10 @@
+{
+    "esversion": 6,
+    "indent": 4,
+    "newcap": true,
+    "undef": true,
+    "node": true,
+    "browser": true,
+    "asi": true,
+    "globals": {}
+}
