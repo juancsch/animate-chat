@@ -3,8 +3,11 @@
     "indent": 4,
     "newcap": true,
     "undef": true,
+    "asi": true,
     "node": true,
     "browser": true,
-    "asi": true,
-    "globals": {}
+    "jasmine": true,
+    "globals": {
+        "browser": true
+    }
 }
