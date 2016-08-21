@@ -8,7 +8,12 @@
   "scripts": {
     "build-client": "webpack --progress --colors",
     "prestart": "npm i",
-    "start": "npm run build-client && PORT=8080 node server/app.js"
+    "start": "npm run build-client && PORT=8080 node server/app.js",
+    "stop": "kill $(lsof -t -i:8080)",
+    "pretest": "npm start --silent &",
+    "test": "sleep 10 && chimp --mocha --path=test",
+    "posttest": "npm stop",
+    "test-watch": "chimp --mocha --path=test --watch"
   },
   "dependencies": {
     "async": "^2.0.1",
@@ -29,6 +34,7 @@
     "babel-core": "^6.13.2",
     "babel-loader": "^6.2.4",
     "babel-preset-es2015": "^6.13.2",
+    "chimp": "^0.40.4",
     "handlebars-loader": "^1.3.0",
     "webpack": "^1.13.1"
   }

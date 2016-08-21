@@ -4,6 +4,8 @@ Un chat en tiempo real usando gif animados como videos
 
 # Tecnologías usadas
 
+Node y NPM
+
 Cliente:
 * webpack
 * socketio
@@ -14,12 +16,14 @@ Servidor:
 * express
 * socketio
 * leveldb
-* ffmpeg
+* ffmpeg: programa externo
 ...
+
+Testing:
+* chimp: mocha, webdriverio, ...
 
 # TODO
 
-* testing
 * despliegue en cloud
 
 ## Disclaimer
