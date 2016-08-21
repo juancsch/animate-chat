@@ -25,6 +25,6 @@ module.exports = function(wrtc, messageModel) {
 
             record(message, wrtc, messageModel)
         },
-        events: messageModel.events
+        events: messageModel
     }
 }

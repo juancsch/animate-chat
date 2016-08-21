@@ -12,6 +12,4 @@ const messageView = require('./MessageView')
 const uuid = require('uuid')
 const sessionId = uuid.v4()
 
-const model = messageModel(sessionId)
-const viewModel = messageViewModel(webrtc2Images(), model)
-messageView(viewModel)
+messageView(messageViewModel(webrtc2Images(), messageModel(sessionId)))

@@ -4,28 +4,30 @@
 
 'use strict'
 
-const events = require('events');
+const util = require('util')
+const events = require('events')
+const EventEmitter = require('events').EventEmitter
 const io = require('socket.io-client')
 
-function buildEvents(sessionId, socket) {
+function buildEvents(sessionId, model, socket) {
 
-    var eventEmitter = new events.EventEmitter();
+    // util.inherits(model, EventEmitter)
+    EventEmitter.call(model)
+    Object.assign(model, EventEmitter.prototype)
 
     socket.on('message', (message) => {
-        eventEmitter.emit('message', message)
+        model.emit('message', message)
     })
 
     socket.on('messageack', (message) => {
         if (message.id === sessionId) {
-            eventEmitter.emit('message', message)
+            model.emit('message', message)
         }
     })
 
     socket.on('messages', (messages) => {
-        eventEmitter.emit('messages', messages)
+        model.emit('messages', messages)
     })
-
-    return eventEmitter
 }
 
 function emitMessage(sessionId, socket, message) {
@@ -41,14 +43,17 @@ function build(sessionId) {
 
     const socket = io.connect()
 
-    return {
+    const model = {
 
         update(message) {
 
             emitMessage(sessionId, socket, message)
-        },
-        events: buildEvents(sessionId, socket)
+        }
     }
+
+    buildEvents(sessionId, model, socket)
+
+    return model
 }
 
 module.exports = build
