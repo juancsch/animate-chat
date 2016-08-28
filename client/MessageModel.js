@@ -19,12 +19,6 @@ function buildEvents(sessionId, model, socket) {
         model.emit('message', message)
     })
 
-    socket.on('messageack', (message) => {
-        if (message.id === sessionId) {
-            model.emit('message', message)
-        }
-    })
-
     socket.on('messages', (messages) => {
         model.emit('messages', messages)
     })

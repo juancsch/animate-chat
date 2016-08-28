@@ -31,16 +31,11 @@ function initWebSocketServer(server, database, video) {
                     delete message.frames
                     message.video = video
 
-                    // Save message
                     db.save(message, function(err) {
                         if (err) return console.error(err)
                     })
 
-                    // Send video to everyone
-                    socket.broadcast.emit('message', message)
-
-                    // Send video to sender
-                    socket.emit('messageack', message)
+                    io.sockets.emit('message', message)
                 })
         })
     })
