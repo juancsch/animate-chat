@@ -15,7 +15,7 @@ module.exports = function(messageViewModel) {
 
     function addMessage(message) {
 
-        messages.insertBefore(domify(messageTpl(message)), alert)
+        messages.appendChild(domify(messageTpl(message)))
         printSend('none')
     }
 

@@ -44,6 +44,12 @@ li p {
   width: 80%
 }
 
+#alert {
+  bottom: 170px;
+  left: 210px;
+  position: fixed;
+}
+
 .video-container {
   float: left;
   height: 200px;
