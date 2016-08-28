@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/juancsch/animate-chat.svg?branch=master)](https://travis-ci.org/juancsch/animate-chat)
+
 # animate-chat
 
 Un chat en tiempo real usando gif animados como videos
