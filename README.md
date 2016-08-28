@@ -21,6 +21,7 @@ Servidor:
 
 Testing:
 * chimp: mocha, webdriverio, ...
+* travis-ci
 
 # TODO
 
