@@ -15,22 +15,22 @@ function buildDatabase(options) {
         checkFrequency: 10000
     })
 
-    let duration = options.duration || 10 * 60 * 1000
+    const duration = options.duration || 10 * 60 * 1000
 
     function save(message, callback) {
 
-        let key = `message-${Date.now()}-${uuid.v4()}`
-        let options = {
+        const key = `message-${Date.now()}-${uuid.v4()}`
+        const opt = {
             valueEncoding: 'json',
             ttl: duration
         }
 
-        db.put(key, message, options, callback)
+        db.put(key, message, opt, callback)
     }
 
     function list(callback) {
 
-        let rs = db.createValueStream({
+        db.createValueStream({
             limit: options.limit,
             valueEncoding: 'json',
             reverse: true,
@@ -41,12 +41,12 @@ function buildDatabase(options) {
     }
 
     return {
-        save: save,
-        list: list
+        save,
+        list
     }
 }
 
-module.exports = function(options = { limit: 10 }) {
+module.exports = function(options = {limit: 10}) {
 
     return buildDatabase(options)
 }

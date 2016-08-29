@@ -14,13 +14,13 @@ function ffmpegCmd(options, callback) {
         return callback(new TypeError('You must specify a baseName'))
     }
 
-    let folder = options.folder || os.tmpDir()
-    let baseName = options.baseName
-    let fileSrc = path.join(folder, `${baseName}-%d.jpg`)
-    let fileDest = path.join(folder, `${baseName}.webm`)
+    const folder = options.folder || os.tmpDir()
+    const baseName = options.baseName
+    const fileSrc = path.join(folder, `${baseName}-%d.jpg`)
+    const fileDest = path.join(folder, `${baseName}.webm`)
 
     // ffmpeg -i images-%d.jpg -filter:v "setpts=2.5*PTS" -vcodec libvpx -an video.webm
-    let ffmpeg = spawn('ffmpeg', [
+    const ffmpeg = spawn('ffmpeg', [
         '-i',
         fileSrc,
         '-filter:v',

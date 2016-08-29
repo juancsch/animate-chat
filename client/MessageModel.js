@@ -4,8 +4,6 @@
 
 'use strict'
 
-const util = require('util')
-const events = require('events')
 const EventEmitter = require('events').EventEmitter
 const io = require('socket.io-client')
 

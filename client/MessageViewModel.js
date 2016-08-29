@@ -11,8 +11,8 @@ function record(message, wrtc, messageModel) {
         if (err) return console.error(err)
 
         messageModel.update({
-            message: message,
-            frames: frames
+            message,
+            frames
         })
     })
 }

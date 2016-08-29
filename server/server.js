@@ -4,7 +4,7 @@
 
 'use strict'
 
-const http = require('http');
+const http = require('http')
 const express = require('express')
 const bodyParser = require('body-parser')
 const path = require('path')
@@ -25,7 +25,7 @@ module.exports = {
         routes.registerOn(app)
 
         app.use((req, res, next) => {
-            var err = new Error('Not Found')
+            const err = new Error('Not Found')
             err.status = 404
             next(err)
         })
@@ -34,10 +34,11 @@ module.exports = {
             res.status(err.status || 500)
                .set('Content-Type', 'text/plain')
                .send(`${err.message}\n${req}`)
+            next()
         })
 
         server.listen(port, () => {
-            console.log('Server started on port:', port);
+            console.log('Server started on port:', port)
         })
     }
 }

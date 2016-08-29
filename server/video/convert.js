@@ -2,8 +2,6 @@
  *
  */
 
-// TODO: usar Promise en vez de async ...
-
 'use strict'
 
 const EventEmitter = require('events').EventEmitter
@@ -19,10 +17,10 @@ function build(ffmpegCmd, listFilterFolder) {
 
     return function(images) {
 
-        const events = new EventEmitter();
+        const events = new EventEmitter()
         let count = 0
-        let baseName = uuid.v4()
-        let tmpDir = os.tmpDir()
+        const baseName = uuid.v4()
+        const tmpDir = os.tmpDir()
         let video
 
         async.series([
@@ -30,12 +28,13 @@ function build(ffmpegCmd, listFilterFolder) {
             createVideo,
             encodeVideo,
             cleanUp
-        ], convertFinished);
+        ], convertFinished)
 
         function decodeImage(image, done) {
 
-            let fileName = `${baseName}-${count++}.jpg`
-            let buffer = dataURI2Buffer(image)
+            count += 1
+            const fileName = `${baseName}-${count}.jpg`
+            const buffer = dataURI2Buffer(image)
             fs.createWriteStream(path.join(tmpDir, fileName))
                 .on('error', done)
                 .end(buffer, done)
@@ -53,14 +52,14 @@ function build(ffmpegCmd, listFilterFolder) {
             events.emit('log', 'Creating video')
 
             ffmpegCmd({
-                baseName: baseName,
+                baseName,
                 folder: tmpDir
             }, done)
         }
 
         function encodeVideo(done) {
 
-            let fileName = `${baseName}.webm`
+            const fileName = `${baseName}.webm`
 
             events.emit('log', `Encoding video ${fileName}`)
 
@@ -92,15 +91,15 @@ function build(ffmpegCmd, listFilterFolder) {
             events.emit('log', `deleting ${file}`)
 
             fs.unlink(path.join(tmpDir, file), function(err) {
-                // ignore err
+                console.log('error', err)
                 done()
             })
         }
 
         function convertFinished (err) {
 
-          if (err) return events.emit('error', err)
-          events.emit('video', video)
+            if (err) return events.emit('error', err)
+            events.emit('video', video)
         }
 
         return events

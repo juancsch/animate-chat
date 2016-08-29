@@ -13,7 +13,7 @@ function initWebSocketServer(server, database, video) {
 
     io.on('connection', (socket) => {
 
-        console.log(`Client conection ${socket.id}`);
+        console.log(`Client conection ${socket.id}`)
 
         db.list(function(err, messages) {
             if (err) return console.error(err)
@@ -26,10 +26,10 @@ function initWebSocketServer(server, database, video) {
 
             converter
                 .on('log', console.log)
-                .on('video', function(video) {
+                .on('video', function(vd) {
 
                     delete message.frames
-                    message.video = video
+                    message.video = vd
 
                     db.save(message, function(err) {
                         if (err) return console.error(err)

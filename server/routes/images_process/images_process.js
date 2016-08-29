@@ -2,9 +2,9 @@
  *
  */
 
-'use strict';
+'use strict'
 
-const router = require('express').Router();
+const router = require('express').Router()
 
 function fail(err, res) {
     res.status(500)
@@ -17,14 +17,16 @@ function buildRoute(video) {
     router.post('/', (req, res) => {
 
         if (!Array.isArray(req.body.images)) {
-            return fail({ message: 'parameter `images` is required' }, res)
+            return fail({message: 'parameter `images` is required'}, res)
         }
 
         video.convert(req.body.images)
-            .on('video', function(video) {
+            .on('video', function(vd) {
                 res.status(200)
                    .set('Content-Type', 'application/json')
-                   .json({ video: video })
+                   .json({
+                       video: vd
+                   })
             })
             .on('error', function(err) {
                 fail(err, res)
@@ -32,7 +34,7 @@ function buildRoute(video) {
             .on('log', function(log) {
                 console.log(log)
             })
-    });
+    })
 
     return router
 }

@@ -9,29 +9,31 @@ const messageTpl = require('./tmpls/message.hbs')
 
 module.exports = function(messageViewModel) {
 
-    const messages = document.querySelector('#messages')
-    const alert = document.querySelector('#alert')
-    const input = document.querySelector('input[name="message"]')
+    const ui = {
+        messages: document.querySelector('#messages'),
+        alert: document.querySelector('#alert'),
+        input: document.querySelector('input[name="message"]')
+    }
 
     function addMessage(message) {
 
-        messages.appendChild(domify(messageTpl(message)))
+        ui.messages.appendChild(domify(messageTpl(message)))
         printSend('none')
     }
 
     function printSend(display) {
 
-        alert.style.display = display
+        ui.alert.style.display = display
         window.scrollTo(0, document.body.scrollHeight)
     }
 
-    document.querySelector('form').addEventListener('submit', function(e) {
+    document.querySelector('form').addEventListener('submit', function(ev) {
 
-        e.preventDefault()
+        ev.preventDefault()
 
         printSend('block')
-        const message = input.value
-        input.value = ""
+        const message = ui.input.value
+        ui.input.value = ''
 
         messageViewModel.record(message)
 

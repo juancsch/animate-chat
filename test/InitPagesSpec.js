@@ -21,19 +21,21 @@ describe('Animate chat expectations', function() {
                 .setValue('input[name="message"]', 'my message')
                 .submitForm('form[name="sender_msg"]')
 
-            expect(browser.getCssProperty('#alert','display').value)
+            expect(browser.getCssProperty('#alert', 'display').value)
                 .to.equal('block')
         })
 
-        xit('should ... @watch', function() {
+        xit('should show the same message sended @watch', function() {
 
-            const msg = 'a message'
+            const msgSended = 'a message'
 
-            browser.url('http://localhost:8080')
-                .setValue('input[name="message"]', msg)
+            const printerMsg = browser.url('http://localhost:8080')
+                .setValue('input[name="message"]', msgSended)
                 .submitForm('form[name="sender_msg"]')
 
-            // TODO verify last li has msg
+                .getValue('ul#messages>li:last-child>p')
+
+            expect(printerMsg).to.equal(msgSended)
         })
     })
 })
