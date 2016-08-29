@@ -11,9 +11,9 @@
     "start": "npm run build-client && PORT=8080 node server/app.js",
     "stop": "kill $(lsof -t -i:8080)",
     "pretest": "npm start --silent &",
-    "test": "sleep 10 && chimp --mocha --path=test",
+    "test": "sleep 10 && chimp --browser=phantomjs --mocha --path=test",
     "posttest": "npm stop",
-    "test-watch": "chimp --mocha --path=test --watch"
+    "test-watch": "chimp --browser=phantomjs --mocha --path=test --watch"
   },
   "dependencies": {
     "async": "^2.0.1",
