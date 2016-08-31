@@ -91,7 +91,7 @@ function build(ffmpegCmd, listFilterFolder) {
             events.emit('log', `deleting ${file}`)
 
             fs.unlink(path.join(tmpDir, file), function(err) {
-                console.log('error', err)
+                // ignore err
                 done()
             })
         }

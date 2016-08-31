@@ -22,6 +22,8 @@ function initWebSocketServer(server, database, video) {
 
         socket.on('message', function(message) {
 
+            console.log('msg recived:', message.id, message.message)
+
             const converter = video.convert(message.frames)
 
             converter
