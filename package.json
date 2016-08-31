@@ -15,6 +15,9 @@
     "posttest": "npm stop",
     "test-watch": "chimp --browser=phantomjs --mocha --path=test --watch"
   },
+  "engines": {
+    "node": "6.1.x"
+  },
   "dependencies": {
     "async": "^2.0.1",
     "body-parser": "^1.15.2",

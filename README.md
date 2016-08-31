@@ -6,7 +6,7 @@ Un chat en tiempo real usando gif animados como videos
 
 # Tecnologías usadas
 
-Node y NPM
+es6/2015, node y npm scripts
 
 Cliente:
 * webpack
@@ -25,9 +25,9 @@ Testing:
 * chimp: mocha, webdriverio, ...
 * travis-ci
 
-# TODO
+# Despliegue en cloud
 
-* despliegue en cloud
+Heroku: [animate-chat](https://animate-chat.herokuapp.com/)
 
 ## Disclaimer
 
