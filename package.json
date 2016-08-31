@@ -1,5 +1,5 @@
 {
-  "name": "node-chat",
+  "name": "animate-chat",
   "version": "0.0.1",
   "description": "Chat en tiempo real",
   "author": "Juan Carlos Serrano <juancsch@gmail.com>",
@@ -13,10 +13,12 @@
     "pretest": "npm start --silent &",
     "test": "sleep 10 && chimp --browser=phantomjs --mocha --path=test",
     "posttest": "npm stop",
-    "test-watch": "chimp --browser=phantomjs --mocha --path=test --watch"
+    "test-watch": "chimp --browser=phantomjs --mocha --path=test --watch",
+    "heroku-postbuild": "npm run build-client"
   },
   "engines": {
-    "node": "6.1.x"
+    "node": "6.1.x",
+    "node": "3.10.x"
   },
   "dependencies": {
     "async": "^2.0.1",
