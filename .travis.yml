@@ -1,9 +1,12 @@
 language: node_js
 node_js:
-  - '6.1'
+- '6.1'
 notifications:
   email:
     recipients:
-      - juancsch@gmail.com
+    - juancsch@gmail.com
     on_success: change
     on_failure: always
+deploy:
+  api_key:
+    secure: cnSO32rcMt5Us6BX8EOtiaGlhFWWEOYAyGJNdHw1EhzN7hEn1ef8yrq4hzp1uCx/b9oCWBYHN0u90rJ/ow9aXsCry2jLta0f5kuFmQOVvuJFY0nKxMH1o4z+Qzc6o3jaRypCuM5/i4mYlOhjQIMXQIKG0GlmcnKgat1bcjfBDHYmDgCSQHoiGAlcef6z8+Dunw6cxcuTfg7oOtP0ysuoKSl5oU0WXzNXoUZ8TZUI0x685OVjjExmOutPzI56dZdkUFhoIWPRZS41NfMjbo9LbX6f9dShfhM/RlBK4/OXkG33xN4DBeYrGlcqeOm2tyu/hBk8JOVRciuYLF6q+rQg8U8JfmMCXIuMIW8XIlLolqdLWJo9I9V+G0b9GgzC5xeq3yEq4kMxgMYmWuF2SotWcfzG+qw/JB4ZazeTTm4V86Pc5HPDa1wN8ZwshzJY1HNehlYukMrkKOmW+1XxTYXY55xc/4CB+6H90kEx3XcE0pxx0ZdAERPGQDmsVrLEgvFIeAsb8K2I+aB4S/lR7YLiVal8HayIUn/3zDS6XGwdlOEVMuHhbq8OBsp1a7CBN4cYNIs1bA7p+Ssa8rTCHa+Y2WUlynhHEsoXBdBtRdy+Ep7q5byYBEmaNmJAWja/ebJWqtwbPShpsXD3ZEjYeaf0mCUZf2Th6rY32BgBejrICIc=
