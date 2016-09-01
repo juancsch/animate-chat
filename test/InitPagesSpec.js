@@ -13,7 +13,7 @@ describe('Animate chat expectations', function() {
             browser.url('http://localhost:8080')
 
             expect(browser.getTitle()).to.equal('Animate Chat')
-            expect(browser.hasFocus('input[name="message"]')).to.be.true
+            expect(browser.hasFocus('input[name="message"]')).to.equal(true)
         })
 
         xit('should show sending message when submit form @watch', function() {
