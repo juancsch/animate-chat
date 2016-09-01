@@ -12,6 +12,7 @@ Cliente:
 * webpack
 * socketio
 * handlebars
+* webrtc
 ...
 
 Servidor:
