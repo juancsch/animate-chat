@@ -9,7 +9,7 @@ const socketio = require('socket.io')
 function initWebSocketServer(server, database, video) {
 
     const db = database()
-    const io = socketio(server)
+    const io = socketio.listen(server)
 
     io.on('connection', (socket) => {
 

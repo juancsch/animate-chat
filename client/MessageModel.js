@@ -39,6 +39,8 @@ function build(sessionId) {
 
         update(message) {
 
+            console.log('sending:', message)
+
             emitMessage(sessionId, socket, message)
         }
     }
