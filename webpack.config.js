@@ -1,7 +1,3 @@
-/**
- *
- */
-
 module.exports = {
     entry: './client/app.js',
     output: {
@@ -9,17 +5,11 @@ module.exports = {
         filename: 'js/app.bundle.js'
     },
     module: {
-        loaders: [{
-            test: /\.js$/,
-            loader: 'babel',
-            exclude: /(node_modules)/,
-            query: {
-                presets: ['es2015']
-            }},
+        loaders: [
             {
                 test: /\.hbs$/,
-                loader: "handlebars-loader"
+                loader: 'handlebars-loader'
             }
         ]
     }
-};
+}
