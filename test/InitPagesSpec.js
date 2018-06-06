@@ -1,10 +1,7 @@
-/**
- *
- */
 
-'use strict'
+describe('Animate chat expectations', () => {
 
-describe('Animate chat expectations', function() {
+    describe('When index page', () => {
 
     describe('When index page', function() {
 
@@ -16,7 +13,7 @@ describe('Animate chat expectations', function() {
             expect(browser.hasFocus('input[name="message"]')).to.equal(true)
         })
 
-        xit('should show sending message when submit form @watch', function() {
+        xit('should show sending message when submit form @watch', () => {
 
             browser.url('http://localhost:8080')
                 .setValue('input[name="message"]', 'my message')
@@ -26,7 +23,7 @@ describe('Animate chat expectations', function() {
                 .to.equal('block')
         })
 
-        xit('should show the same message sended @watch', function() {
+        xit('should show the same message sended @watch', () => {
 
             const msgSended = 'a message'
 
@@ -38,7 +35,7 @@ describe('Animate chat expectations', function() {
             browser
                 .setValue('input[name="message"]', msgSended)
                 .submitForm('form[name="sender_msg"]')
-                .waitUntil(function() {
+                .waitUntil(() => {
                     return numMsgs < browser.elements('ul#messages>li').value.length
                 }, 10000)
 

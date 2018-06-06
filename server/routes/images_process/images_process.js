@@ -2,17 +2,15 @@
  *
  */
 
-'use strict'
-
 const router = require('express').Router()
 
-function fail(err, res) {
+function fail (err, res) {
     res.status(500)
        .set('Content-Type', 'text/plain')
        .send(err.message)
 }
 
-function buildRoute(video) {
+function buildRoute (video) {
 
     router.post('/', (req, res) => {
 
@@ -21,17 +19,17 @@ function buildRoute(video) {
         }
 
         video.convert(req.body.images)
-            .on('video', function(vd) {
+            .on('video', function (vd) {
                 res.status(200)
                    .set('Content-Type', 'application/json')
                    .json({
                        video: vd
                    })
             })
-            .on('error', function(err) {
+            .on('error', function (err) {
                 fail(err, res)
             })
-            .on('log', function(log) {
+            .on('log', function (log) {
                 console.log(log)
             })
     })
@@ -41,7 +39,7 @@ function buildRoute(video) {
 
 module.exports = {
 
-    new(video) {
+    new (video) {
 
         return buildRoute(video)
     }

@@ -2,7 +2,7 @@
  *
  */
 
-const images_process = require('./images_process')
+const imagesProcess = require('./images_process')
 const video = require('../../video')
 
-module.exports = images_process.new(video)
+module.exports = imagesProcess.new(video)

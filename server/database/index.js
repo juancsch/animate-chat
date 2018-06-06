@@ -2,14 +2,12 @@
  *
  */
 
-'use strict'
-
 const level = require('level')
 const ttl = require('level-ttl')
 const uuid = require('uuid')
 const concat = require('concat-stream')
 
-function buildDatabase(options) {
+function buildDatabase (options) {
 
     const db = ttl(level('./messages.db'), {
         checkFrequency: 10000
@@ -17,7 +15,7 @@ function buildDatabase(options) {
 
     const duration = options.duration || 10 * 60 * 1000
 
-    function save(message, callback) {
+    function save (message, callback) {
 
         const key = `message-${Date.now()}-${uuid.v4()}`
         const opt = {
@@ -28,7 +26,7 @@ function buildDatabase(options) {
         db.put(key, message, opt, callback)
     }
 
-    function list(callback) {
+    function list (callback) {
 
         db.createValueStream({
             limit: options.limit,
@@ -46,7 +44,7 @@ function buildDatabase(options) {
     }
 }
 
-module.exports = function(options = {limit: 10}) {
+module.exports = function (options = {limit: 10}) {
 
     return buildDatabase(options)
 }

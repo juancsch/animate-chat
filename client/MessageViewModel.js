@@ -1,14 +1,8 @@
-/**
- *
- */
-
-'use strict'
-
-function record(message, wrtc, messageModel) {
+function record (message, wrtc, messageModel) {
 
     console.log('record video ...')
 
-    wrtc.recordVideo(function(err, frames) {
+    wrtc.recordVideo(function (err, frames) {
 
         if (err) return console.error(err)
 
@@ -19,12 +13,9 @@ function record(message, wrtc, messageModel) {
     })
 }
 
-module.exports = function(wrtc, messageModel) {
-
+module.exports = function build (wrtc, messageModel) {
     return {
-
-        record(message) {
-
+        record (message) {
             record(message, wrtc, messageModel)
         },
         events: messageModel

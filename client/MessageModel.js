@@ -1,17 +1,16 @@
-/**
- *
- */
-
-'use strict'
-
-const EventEmitter = require('events').EventEmitter
+const EventEmitter = require('events')
 const io = require('socket.io-client')
 
-function buildEvents(sessionId, model, socket) {
+function emitMessage (sessionId, socket, message) {
 
-    // util.inherits(model, EventEmitter)
-    EventEmitter.call(model)
-    Object.assign(model, EventEmitter.prototype)
+    socket.emit('message', {
+        id: sessionId,
+        message: message.message,
+        frames: message.frames
+    })
+}
+
+function subscribeTo (socket, model) {
 
     socket.on('message', (message) => {
         model.emit('message', message)
@@ -22,32 +21,39 @@ function buildEvents(sessionId, model, socket) {
     })
 }
 
-function emitMessage(sessionId, socket, message) {
+class MessageModel extends EventEmitter {
 
-    socket.emit('message', {
-        id: sessionId,
-        message: message.message,
-        frames: message.frames
-    })
-}
-
-function build(sessionId) {
-
-    const socket = io.connect()
-
-    const model = {
-
-        update(message) {
-
-            console.log('sending:', message)
-
-            emitMessage(sessionId, socket, message)
-        }
+    constructor (sessionId, socket) {
+        super()
+        this._sessionId = sessionId
+        this._socket = socket
+        subscribeTo(this._socket, this)
     }
 
-    buildEvents(sessionId, model, socket)
-
-    return model
+    update (message) {
+        console.log('sending:', message)
+        emitMessage(this._sessionId, this._socket, message)
+    }
 }
 
-module.exports = build
+// function buildModel (sessionId, socket) {
+//
+//     const model = {
+//         update (message) {
+//             console.log('sending:', message)
+//             emitMessage(sessionId, socket, message)
+//         }
+//     }
+//
+//     Object.assign(model, EventEmitter.prototype)
+//     EventEmitter.call(model)
+//
+//     subscribeTo(socket, model)
+//
+//     return model
+// }
+
+module.exports = function build (sessionId) {
+    const socket = io.connect()
+    return new MessageModel(sessionId, socket)
+}

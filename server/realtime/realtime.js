@@ -2,11 +2,9 @@
  *
  */
 
-'use strict'
-
 const socketio = require('socket.io')
 
-function initWebSocketServer(server, database, video) {
+function initWebSocketServer (server, database, video) {
 
     const db = database()
     const io = socketio.listen(server)
@@ -15,12 +13,12 @@ function initWebSocketServer(server, database, video) {
 
         console.log(`Client conection ${socket.id}`)
 
-        db.list(function(err, messages) {
+        db.list(function (err, messages) {
             if (err) return console.error(err)
             socket.emit('messages', messages)
         })
 
-        socket.on('message', function(message) {
+        socket.on('message', function (message) {
 
             console.log('msg recived:', message.id, message.message)
 
@@ -28,12 +26,12 @@ function initWebSocketServer(server, database, video) {
 
             converter
                 .on('log', console.log)
-                .on('video', function(vd) {
+                .on('video', function (vd) {
 
                     delete message.frames
                     message.video = vd
 
-                    db.save(message, function(err) {
+                    db.save(message, function (err) {
                         if (err) return console.error(err)
                     })
 

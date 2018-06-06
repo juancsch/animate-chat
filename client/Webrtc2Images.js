@@ -1,12 +1,6 @@
-/**
- *
- */
-
-'use strict'
-
 const Webrtc2Images = require('webrtc2images')
 
-function buildRtc() {
+module.exports = function buildRtc () {
 
     const rtc = new Webrtc2Images({
         width: 200,
@@ -17,15 +11,13 @@ function buildRtc() {
         interval: 200
     })
 
-    rtc.startVideo(function(err) {
+    rtc.startVideo(function (err) {
         if (err) return logError(err)
     })
 
-    function logError(err) {
+    function logError (err) {
         console.error(err)
     }
 
     return rtc
 }
-
-module.exports = buildRtc

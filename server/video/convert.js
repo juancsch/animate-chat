@@ -2,8 +2,6 @@
  *
  */
 
-'use strict'
-
 const EventEmitter = require('events').EventEmitter
 const dataURI2Buffer = require('data-uri-to-buffer')
 const async = require('async')
@@ -13,14 +11,14 @@ const fs = require('fs')
 const path = require('path')
 const concat = require('concat-stream')
 
-function build(ffmpegCmd, listFilterFolder) {
+function build (ffmpegCmd, listFilterFolder) {
 
-    return function(images) {
+    return function (images) {
 
         const events = new EventEmitter()
         let count = 0
         const baseName = uuid.v4()
-        const tmpDir = os.tmpDir()
+        const tmpDir = os.tmpdir()
         let video
 
         async.series([
@@ -30,7 +28,7 @@ function build(ffmpegCmd, listFilterFolder) {
             cleanUp
         ], convertFinished)
 
-        function decodeImage(image, done) {
+        function decodeImage (image, done) {
 
             count += 1
             const fileName = `${baseName}-${count}.jpg`
@@ -42,12 +40,12 @@ function build(ffmpegCmd, listFilterFolder) {
             events.emit('log', `converting ${fileName}`)
         }
 
-        function decodeImages(done) {
+        function decodeImages (done) {
 
             async.eachSeries(images, decodeImage, done)
         }
 
-        function createVideo(done) {
+        function createVideo (done) {
 
             events.emit('log', 'Creating video')
 
@@ -57,40 +55,40 @@ function build(ffmpegCmd, listFilterFolder) {
             }, done)
         }
 
-        function encodeVideo(done) {
+        function encodeVideo (done) {
 
             const fileName = `${baseName}.webm`
 
             events.emit('log', `Encoding video ${fileName}`)
 
             fs.createReadStream(path.join(tmpDir, fileName))
-                .pipe(concat(function(videoBuffer) {
+                .pipe(concat(function (videoBuffer) {
                     video = `data:video/webm;base64,${videoBuffer.toString('base64')}`
                     done()
                 }))
                 .on('error', done)
         }
 
-        function cleanUp(done) {
+        function cleanUp (done) {
 
             events.emit('log', `cleaning up`)
 
-            listFilterFolder(tmpDir, baseName, function(err, files) {
+            listFilterFolder(tmpDir, baseName, function (err, files) {
                 if (err) return done(err)
                 deleteFiles(files, done)
             })
         }
 
-        function deleteFiles(files, done) {
+        function deleteFiles (files, done) {
 
             async.each(files, deleteFile, done)
         }
 
-        function deleteFile(file, done) {
+        function deleteFile (file, done) {
 
             events.emit('log', `deleting ${file}`)
 
-            fs.unlink(path.join(tmpDir, file), function(err) {
+            fs.unlink(path.join(tmpDir, file), function () {
                 // ignore err
                 done()
             })
@@ -108,7 +106,7 @@ function build(ffmpegCmd, listFilterFolder) {
 
 module.exports = {
 
-    new(ffmpegCmd, listFilterFolder) {
+    new (ffmpegCmd, listFilterFolder) {
 
         return build(ffmpegCmd, listFilterFolder)
     }

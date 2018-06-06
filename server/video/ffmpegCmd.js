@@ -2,19 +2,17 @@
  *
  */
 
-'use strict'
-
 const os = require('os')
 const path = require('path')
 const spawn = require('child_process').spawn
 
-function ffmpegCmd(options, callback) {
+function ffmpegCmd (options, callback) {
 
     if (!options.baseName) {
         return callback(new TypeError('You must specify a baseName'))
     }
 
-    const folder = options.folder || os.tmpDir()
+    const folder = options.folder || os.tmpdir()
     const baseName = options.baseName
     const fileSrc = path.join(folder, `${baseName}-%d.jpg`)
     const fileDest = path.join(folder, `${baseName}.webm`)
@@ -31,11 +29,10 @@ function ffmpegCmd(options, callback) {
         fileDest
     ])
 
-    ffmpeg.stdout.on('close', function(code) {
+    ffmpeg.stdout.on('close', function (code) {
         if (!code) return callback(null)
         callback(new Error(`ffmpeg exited with code ${code}`))
     })
 }
-
 
 module.exports = ffmpegCmd

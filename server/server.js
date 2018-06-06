@@ -1,17 +1,14 @@
-/**
- *
- */
-
-'use strict'
-
 const http = require('http')
 const express = require('express')
 const bodyParser = require('body-parser')
 const path = require('path')
 
+const defaultServerPort = 8080
+const serverErrorHttpStatusCode = 500
+
 module.exports = {
 
-    start(routes, realtime, port = 8080) {
+    start (routes, realtime, port = defaultServerPort) {
 
         const app = express()
         const server = http.createServer(app)
@@ -31,7 +28,7 @@ module.exports = {
         })
 
         app.use((err, req, res, next) => {
-            res.status(err.status || 500)
+            res.status(err.status || serverErrorHttpStatusCode)
                .set('Content-Type', 'text/plain')
                .send(`${err.message}\n${req}`)
             next()

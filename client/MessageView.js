@@ -1,33 +1,27 @@
-/**
- *
- */
-
-'use strict'
-
 const domify = require('domify')
 const messageTpl = require('./tmpls/message.hbs')
 
-module.exports = function(messageViewModel) {
+const ui = {
+  messages: document.querySelector('#messages'),
+  alert: document.querySelector('#alert'),
+  input: document.querySelector('input[name="message"]')
+}
 
-    const ui = {
-        messages: document.querySelector('#messages'),
-        alert: document.querySelector('#alert'),
-        input: document.querySelector('input[name="message"]')
-    }
+function addMessage (message) {
 
-    function addMessage(message) {
+  ui.messages.appendChild(domify(messageTpl(message)))
+  printSend('none')
+}
 
-        ui.messages.appendChild(domify(messageTpl(message)))
-        printSend('none')
-    }
+function printSend (display) {
 
-    function printSend(display) {
+  ui.alert.style.display = display
+  window.scrollTo(0, document.body.scrollHeight)
+}
 
-        ui.alert.style.display = display
-        window.scrollTo(0, document.body.scrollHeight)
-    }
+module.exports = function build (messageViewModel) {
 
-    document.querySelector('form').addEventListener('submit', function(ev) {
+    document.querySelector('form').addEventListener('submit', function (ev) {
 
         ev.preventDefault()
 
