@@ -1,7 +1,3 @@
-/**
- *
- */
-
 const os = require('os')
 const path = require('path')
 const spawn = require('child_process').spawn
@@ -18,7 +14,7 @@ function ffmpegCmd (options, callback) {
     const fileDest = path.join(folder, `${baseName}.webm`)
 
     // ffmpeg -i images-%d.jpg -filter:v "setpts=2.5*PTS" -vcodec libvpx -an video.webm
-    const ffmpeg = spawn('ffmpeg', [
+    const ffmpeg = spawn('./bin/ffmpeg', [
         '-i',
         fileSrc,
         '-filter:v',

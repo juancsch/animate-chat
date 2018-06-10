@@ -2,7 +2,7 @@
  *
  */
 
-const EventEmitter = require('events').EventEmitter
+const EventEmitter = require('events')
 const dataURI2Buffer = require('data-uri-to-buffer')
 const async = require('async')
 const uuid = require('uuid')
