@@ -1,7 +1,3 @@
-/**
- *
- */
-
 const imagesProcessRoute = require('./images_process')
 
 module.exports = {

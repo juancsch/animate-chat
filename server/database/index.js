@@ -1,13 +1,9 @@
-/**
- *
- */
-
 const level = require('level')
 const ttl = require('level-ttl')
 const uuid = require('uuid')
 const concat = require('concat-stream')
 
-function buildDatabase (options) {
+function build (options = {limit: 10}) {
 
     const db = ttl(level('./messages.db'), {
         checkFrequency: 10000
@@ -44,7 +40,4 @@ function buildDatabase (options) {
     }
 }
 
-module.exports = function (options = {limit: 10}) {
-
-    return buildDatabase(options)
-}
+module.exports = build

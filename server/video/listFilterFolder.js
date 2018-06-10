@@ -2,19 +2,19 @@ const fs = require('fs')
 
 function listFilterFolder (folder, filter, callback) {
 
-    function filterFiles (file) {
+    function byFiles (file) {
 
         return file.startsWith(filter)
     }
 
-    function onReaddir (err, results) {
+    function onReadDir (err, results) {
 
         if (err) return callback(err)
 
-        callback(err, results.filter(filterFiles))
+        callback(err, results.filter(byFiles))
     }
 
-    fs.readdir(folder, onReaddir)
+    fs.readdir(folder, onReadDir)
 }
 
 module.exports = listFilterFolder

@@ -1,7 +1,3 @@
-/**
- *
- */
-
 const imagesProcess = require('./images_process')
 const video = require('../../video')
 

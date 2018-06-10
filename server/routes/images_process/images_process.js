@@ -1,7 +1,3 @@
-/**
- *
- */
-
 const router = require('express').Router()
 
 function fail (err, res) {

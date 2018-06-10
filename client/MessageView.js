@@ -4,7 +4,8 @@ const messageTpl = require('./tmpls/message.hbs')
 const ui = {
   messages: document.querySelector('#messages'),
   alert: document.querySelector('#alert'),
-  input: document.querySelector('input[name="message"]')
+  input: document.querySelector('input[name="message"]'),
+  msgBox: document.querySelector('form')
 }
 
 function addMessage (message) {
@@ -21,7 +22,7 @@ function printSend (display) {
 
 module.exports = function build (messageViewModel) {
 
-    document.querySelector('form').addEventListener('submit', function (ev) {
+    ui.msgBox.addEventListener('submit', function (ev) {
 
         ev.preventDefault()
 

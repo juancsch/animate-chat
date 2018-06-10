@@ -1,13 +1,9 @@
-/**
- *
- */
+const socket = require('socket.io')
 
-const socketio = require('socket.io')
-
-function initWebSocketServer (server, database, video) {
+function start (server, database, video) {
 
     const db = database()
-    const io = socketio.listen(server)
+    const io = socket.listen(server)
 
     io.on('connection', (socket) => {
 
@@ -41,4 +37,6 @@ function initWebSocketServer (server, database, video) {
     })
 }
 
-module.exports = initWebSocketServer
+module.exports = {
+    start
+}

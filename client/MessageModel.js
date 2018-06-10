@@ -21,39 +21,39 @@ function subscribeTo (socket, model) {
     })
 }
 
-class MessageModel extends EventEmitter {
-
-    constructor (sessionId, socket) {
-        super()
-        this._sessionId = sessionId
-        this._socket = socket
-        subscribeTo(this._socket, this)
-    }
-
-    update (message) {
-        console.log('sending:', message)
-        emitMessage(this._sessionId, this._socket, message)
-    }
-}
-
-// function buildModel (sessionId, socket) {
+// class MessageModel extends EventEmitter {
 //
-//     const model = {
-//         update (message) {
-//             console.log('sending:', message)
-//             emitMessage(sessionId, socket, message)
-//         }
+//     constructor (sessionId, socket) {
+//         super()
+//         this._sessionId = sessionId
+//         this._socket = socket
+//         subscribeTo(this._socket, this)
 //     }
 //
-//     Object.assign(model, EventEmitter.prototype)
-//     EventEmitter.call(model)
-//
-//     subscribeTo(socket, model)
-//
-//     return model
+//     update (message) {
+//         console.log('sending:', message)
+//         emitMessage(this._sessionId, this._socket, message)
+//     }
 // }
+
+function buildModel (sessionId, socket) {
+
+    const model = {
+        update (message) {
+            console.log('sending:', message)
+            emitMessage(sessionId, socket, message)
+        }
+    }
+
+    Object.assign(model, EventEmitter.prototype)
+    EventEmitter.call(model)
+
+    subscribeTo(socket, model)
+
+    return model
+}
 
 module.exports = function build (sessionId) {
     const socket = io.connect()
-    return new MessageModel(sessionId, socket)
+    return buildModel(sessionId, socket)
 }

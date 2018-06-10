@@ -1,15 +1,9 @@
-/**
- *
- */
-
-const realtime = require('./realtime')
+const webSocketServer = require('./websocket-server')
 const video = require('../video')
 const database = require('../database')
 
 module.exports = {
-
     initWith (server) {
-
-        realtime(server, database, video)
+        webSocketServer.start(server, database, video)
     }
 }
