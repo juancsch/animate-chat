@@ -22,8 +22,8 @@ Servidor:
 * ffmpeg: programa externo
 ...
 
-Testing:
-* chimp: mocha, webdriverio, ...
+Testing y CI:
+* chimp: mocha, selenium, webdriverio, ...
 * travis-ci
 
 # Despliegue en cloud
