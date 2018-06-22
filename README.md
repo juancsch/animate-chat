@@ -15,7 +15,7 @@ Cliente:
 * webrtc
 ...
 
-Servidor:
+Servidor: basada en una arquitectura hexagonal
 * express
 * socketio
 * leveldb

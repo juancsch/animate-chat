@@ -1,9 +1,8 @@
-const router = require('express').Router()
 
-module.exports = (controllers) => {
+module.exports = controllers => {
     return {
 		registerOn (app) {
-			app.use('/images/process', router.post('/', controllers.imagesProcessRoute))
+			app.use('/images/process', controllers.imagesProcessRoute)
 		}
 	}
 }

@@ -4,9 +4,8 @@
 
 const listFilterFolder = require('./listFilterFolder')
 const ffmpegCmd = require('./ffmpegCmd')
-const convertFn = require('./convert').new(ffmpegCmd, listFilterFolder)
+const convert = require('./convert')(ffmpegCmd, listFilterFolder)
 
 module.exports = {
-
-    convert: convertFn
+    convert
 }

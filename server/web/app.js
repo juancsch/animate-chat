@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 
 const express = require('express')
 
-const HTTP_SERVER_ERROR = 500
+const STATUS_CODE = require('./http-status-code')
 
 module.exports = (routes) => {
 	//
@@ -19,13 +19,13 @@ module.exports = (routes) => {
     //
 	app.use((req, res, next) => {
 		const err = new Error('Not Found')
-		err.status = 404
+		err.status = STATUS_CODE.HTTP_BAD_REQUEST
 		next(err)
 	})
 
     //
 	app.use((err, req, res, next) => {
-		res.status(err.status || HTTP_SERVER_ERROR)
+		res.status(err.status || STATUS_CODE.HTTP_SERVER_ERROR)
 			.set('Content-Type', 'text/plain')
 			.send(`${err.message}\n${req}`)
 		next()

@@ -1,17 +1,14 @@
 const http = require('http')
 
-// const socketio = require('socket.io')
-
-const app = require('./web')
-const realtime = require('./realtime')
+const appWeb = require('./web')
+const database = require('./db-level')()
+const webSocketServer = require('./web-socket')(database)
 
 const port = process.env.PORT || 8080
 
-const server = http.createServer(app)
-// const websocket = socketio(server)
-realtime.initWith(server)
+const httpServer = http.createServer(appWeb)
+webSocketServer.listen(httpServer)
 
-// launch run server
-server.listen(port, () => {
+httpServer.listen(port, () => {
   console.log('Server started on port:', port)
 })

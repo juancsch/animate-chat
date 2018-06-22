@@ -2,6 +2,8 @@ const os = require('os')
 const path = require('path')
 const spawn = require('child_process').spawn
 
+module.exports = ffmpegCmd
+
 function ffmpegCmd (options, callback) {
 
     if (!options.baseName) {
@@ -30,5 +32,3 @@ function ffmpegCmd (options, callback) {
         callback(new Error(`ffmpeg exited with code ${code}`))
     })
 }
-
-module.exports = ffmpegCmd

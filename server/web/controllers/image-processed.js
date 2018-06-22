@@ -1,28 +1,28 @@
-const HTTP_OK = 200
-const HTTP_SERVER_ERROR = 500
+const router = require('express').Router()
 
-function fail (err, res) {
-	res.status(HTTP_SERVER_ERROR)
+const STATUS_CODE = require('../http-status-code')
+
+const handleFail = (res) => (err) => {
+	res.status(STATUS_CODE.HTTP_SERVER_ERROR)
 		.set('Content-Type', 'text/plain')
 		.send(err.message)
 }
 
-module.exports = (video) => (req, res) => {
+const responseVideo = (res) => (vd) => {
+	res.status(STATUS_CODE.HTTP_OK)
+		.set('Content-Type', 'application/json')
+		.json({ video: vd })
+}
+
+module.exports = (actions) => router.post('/', (req, res) => {
 
 	if (!Array.isArray(req.body.images)) {
-		return fail({message: 'parameter `images` is required'}, res)
+		return handleFail(res)({message: 'parameter `images` is required'})
 	}
 
-	video.convert(req.body.images)
-		.on('video', function (vd) {
-			res.status(HTTP_OK)
-				.set('Content-Type', 'application/json')
-				.json({
-					video: vd
-				})
-		})
-		.on('error', function (err) {
-			fail(err, res)
-		})
-		.on('log', console.log)
-}
+	actions.imagesToVideo(
+		req.body.images,
+		responseVideo(res),
+		handleFail(res)
+	)
+})

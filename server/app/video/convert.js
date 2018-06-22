@@ -7,7 +7,7 @@ const fs = require('fs')
 const path = require('path')
 const concat = require('concat-stream')
 
-const build = (ffmpegCmd, listFilterFolder) => images => {
+module.exports = (ffmpegCmd, listFilterFolder) => images => {
 
     function decodeImage (image, done) {
 
@@ -95,8 +95,4 @@ const build = (ffmpegCmd, listFilterFolder) => images => {
     ], convertFinished)
 
     return events
-}
-
-module.exports = {
-    new: build
 }

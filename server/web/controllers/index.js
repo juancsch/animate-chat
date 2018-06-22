@@ -1,6 +1,6 @@
-const video = require('../../video')
+const actions = require('../../app/actions')
 
-const imagesProcessRoute = require('./image-processed')(video)
+const imagesProcessRoute = require('./image-processed')(actions)
 
 module.exports = {
 	imagesProcessRoute
