@@ -1,5 +1,6 @@
-const domify = require('domify')
-const messageTpl = require('./tmpls/message.hbs')
+import domify from 'domify'
+
+import messageTpl from './tmpls/message.hbs'
 
 const ui = {
   messages: document.querySelector('#messages'),
@@ -20,7 +21,7 @@ function printSend (display) {
   window.scrollTo(0, document.body.scrollHeight)
 }
 
-module.exports = function build (messageViewModel) {
+export default function (messageViewModel) {
 
     ui.msgBox.addEventListener('submit', function (ev) {
 

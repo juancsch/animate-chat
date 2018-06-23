@@ -13,7 +13,7 @@ function record (message, wrtc, messageModel) {
     })
 }
 
-module.exports = function build (wrtc, messageModel) {
+export default function (wrtc, messageModel) {
     return {
         record (message) {
             record(message, wrtc, messageModel)

@@ -1,6 +1,6 @@
-const Webrtc2Images = require('webrtc2images')
+import Webrtc2Images from 'webrtc2images'
 
-module.exports = function buildRtc () {
+export default function () {
 
     const rtc = new Webrtc2Images({
         width: 200,
@@ -11,13 +11,9 @@ module.exports = function buildRtc () {
         interval: 200
     })
 
-    rtc.startVideo(function (err) {
-        if (err) return logError(err)
+    rtc.startVideo((err) => {
+        if (err) console.error(err)
     })
-
-    function logError (err) {
-        console.error(err)
-    }
 
     return rtc
 }

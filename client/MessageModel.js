@@ -1,5 +1,5 @@
-const EventEmitter = require('events')
-const io = require('socket.io-client')
+import EventEmitter from 'events'
+import io from 'socket.io-client'
 
 function emitMessage (sessionId, socket, message) {
 
@@ -53,7 +53,7 @@ function buildModel (sessionId, socket) {
     return model
 }
 
-module.exports = function build (sessionId) {
+export default function (sessionId) {
     const socket = io.connect()
     return buildModel(sessionId, socket)
 }

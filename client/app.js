@@ -1,9 +1,10 @@
-const webrtc2Images = require('./Webrtc2Images')
-const messageViewModel = require('./MessageViewModel')
-const messageModel = require('./MessageModel')
-const messageView = require('./MessageView')
+import uuid from 'uuid'
 
-const uuid = require('uuid')
+import webrtc2Images from './Webrtc2Images'
+import messageViewModel from './MessageViewModel'
+import messageModel from './MessageModel'
+import messageView from './MessageView'
+
 const sessionId = uuid.v4()
 
 messageView(
