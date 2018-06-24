@@ -1,5 +1,6 @@
-const controllers = require('./controllers')
-const routes = require('./routes')(controllers)
-const app = require('./app')(routes)
 
-module.exports = app
+module.exports = actions => {
+	const controllers = require('./controllers')(actions)
+	const routes = require('./routes')(controllers)
+	return require('./app')(routes)
+}

@@ -1,7 +1,7 @@
-const actions = require('../../app/actions')
+const imagesProcessRoute = require('./image-processed')
 
-const imagesProcessRoute = require('./image-processed')(actions)
-
-module.exports = {
-	imagesProcessRoute
+module.exports = actions => {
+	return {
+		imagesProcessRoute: imagesProcessRoute(actions)
+	}
 }

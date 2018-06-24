@@ -8,11 +8,12 @@ Un chat en tiempo real usando gif animados como videos
 
 es6/2015, node y npm scripts
 
-Cliente:
+Cliente: basada en una arquitectura MVVM
 * webpack
 * socketio
 * handlebars
 * webrtc
+* babel
 ...
 
 Servidor: basada en una arquitectura hexagonal

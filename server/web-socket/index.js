@@ -1,8 +1,6 @@
-const actions = require('../app/actions')
-
 const webSocketServer = require('./server')
 
-module.exports = db => ({
+module.exports = (db, actions) => ({
     listen (server) {
         webSocketServer(server, db, actions)
     }
