@@ -7,7 +7,7 @@ describe('Animate chat expectations', () => {
 
             browser.url('http://localhost:8080')
 
-            expect(browser.getTitle()).to.equal('Animate Chat')
+            expect(browser.getTitle()).to.equal('New Animate Chat')
             expect(browser.hasFocus('input[name="message"]')).to.equal(true)
         })
 
