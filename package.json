@@ -4,7 +4,10 @@
   "description": "Chat en tiempo real",
   "author": "Juan Carlos Serrano <juancsch@gmail.com>",
   "license": "MIT",
-  "main": "server/app",
+  "main": "server/start",
+  "engines": {
+    "node": "8.11.3"
+  },
   "scripts": {
     "build-client": "webpack --progress --colors",
     "start": "npm run build-client && PORT=8080 node server/start.js &",
