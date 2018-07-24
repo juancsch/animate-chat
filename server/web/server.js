@@ -5,7 +5,7 @@ const express = require('express')
 
 const STATUS_CODE = require('./http-status-code')
 
-module.exports = (routes) => {
+module.exports = (controllers) => {
 	//
 	const app = express()
 
@@ -14,7 +14,7 @@ module.exports = (routes) => {
 	app.use(express.static(path.join(__dirname, '..', '..', 'public')))
 
     //
-	routes.registerOn(app)
+	controllers.registerOn(app)
 
     //
 	app.use((req, res, next) => {

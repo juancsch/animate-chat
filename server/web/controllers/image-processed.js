@@ -1,5 +1,3 @@
-const router = require('express').Router()
-
 const STATUS_CODE = require('../http-status-code')
 
 const handleFail = (res) => (err) => {
@@ -14,7 +12,7 @@ const responseVideo = (res) => (vd) => {
 		.json({ video: vd })
 }
 
-module.exports = (actions) => router.post('/', (req, res) => {
+const doPost = actions => (req, res) => {
 
 	if (!Array.isArray(req.body.images)) {
 		return handleFail(res)({message: 'parameter `images` is required'})
@@ -25,4 +23,9 @@ module.exports = (actions) => router.post('/', (req, res) => {
 		responseVideo(res),
 		handleFail(res)
 	)
-})
+}
+
+module.exports = function route2logic ({server, actions}) {
+
+	server.post('/images/process', doPost(actions))
+}

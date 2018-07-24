@@ -1,7 +1,7 @@
-const imagesProcessRoute = require('./image-processed')
+const imagesProcessController = require('./image-processed')
 
-module.exports = actions => {
-	return {
-		imagesProcessRoute: imagesProcessRoute(actions)
+module.exports = (actions) => ({
+	registerOn (server) {
+		imagesProcessController({server, actions})
 	}
-}
+})
