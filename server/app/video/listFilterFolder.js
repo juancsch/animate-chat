@@ -1,7 +1,8 @@
 const fs = require('fs')
 
-const startsWith = filter => file => {
-	return file.startsWith(filter)
+module.exports = function (folder = '', filter = '', callback = () => {}) {
+
+	fs.readdir(folder, onReadDir(filter, callback))
 }
 
 const onReadDir = (filter, callback) => (err, results) => {
@@ -9,7 +10,6 @@ const onReadDir = (filter, callback) => (err, results) => {
 	callback(err, results.filter(startsWith(filter)))
 }
 
-module.exports = (folder, filter, callback) => {
-
-	fs.readdir(folder, onReadDir(filter, callback))
+const startsWith = filter => file => {
+	return file.startsWith(filter)
 }

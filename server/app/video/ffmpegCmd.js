@@ -2,9 +2,7 @@ const os = require('os')
 const path = require('path')
 const spawn = require('child_process').spawn
 
-module.exports = ffmpegCmd
-
-function ffmpegCmd (options, callback) {
+module.exports = function ffmpegCmd (options = {baseName: '', folder: ''}, callback = () => {}) {
 
     if (!options.baseName) {
         return callback(new TypeError('You must specify a baseName'))

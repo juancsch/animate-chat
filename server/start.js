@@ -1,9 +1,9 @@
 const http = require('http')
 
 const actions = require('./app/actions')
-const appWeb = require('./web')(actions)
+const appWeb = require('./web')({actions})
 const database = require('./level-db')()
-const webSocketServer = require('./web-socket')(database, actions)
+const webSocketServer = require('./web-socket')({database, actions})
 
 const port = process.env.PORT || 8080
 

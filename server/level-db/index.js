@@ -5,7 +5,21 @@ const concat = require('concat-stream')
 
 const DEFAULT_DURATION = 10 * 60 * 1000
 
-const save = (db, duration) => (message, callback) => {
+module.exports = function build (options = {limit: 10}) {
+
+	const db = ttl(level('messages.db'), {
+		checkFrequency: 10000
+	})
+
+	const duration = options.duration || DEFAULT_DURATION
+
+	return {
+		save: save(db, duration),
+		list: list(db, options)
+	}
+}
+
+const save = (db, duration) => (message = '', callback = () => {}) => {
 
 	const key = `message-${Date.now()}-${uuid.v4()}`
 	const opt = {
@@ -16,7 +30,7 @@ const save = (db, duration) => (message, callback) => {
 	db.put(key, message, opt, callback)
 }
 
-const list = (db, options) => callback => {
+const list = (db, options) => (callback = () => {}) => {
 
 	db.createValueStream({
 		limit: options.limit,
@@ -26,18 +40,4 @@ const list = (db, options) => callback => {
 	}).pipe(concat(function (messages) {
 		callback(null, messages.reverse())
 	})).on('error', callback)
-}
-
-module.exports = function build (options = {limit: 10}) {
-
-    const db = ttl(level('messages.db'), {
-        checkFrequency: 10000
-    })
-
-    const duration = options.duration || DEFAULT_DURATION
-
-    return {
-        save: save(db, duration),
-        list: list(db, options)
-    }
 }

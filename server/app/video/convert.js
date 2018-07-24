@@ -7,7 +7,7 @@ const fs = require('fs')
 const path = require('path')
 const concat = require('concat-stream')
 
-module.exports = (ffmpegCmd, listFilterFolder) => images => {
+module.exports = ({ffmpegCmd, listFilterFolder}) => (images = []) => {
 
     function decodeImage (image, done) {
 
