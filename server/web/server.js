@@ -5,7 +5,9 @@ const express = require('express')
 
 const STATUS_CODE = require('./http-status-code')
 
-module.exports = (controllers) => {
+module.exports = build
+
+function build (controllers) {
 	//
 	const app = express()
 

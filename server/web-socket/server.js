@@ -1,5 +1,21 @@
 const socketio = require('socket.io')
 
+module.exports = build
+
+function build (server, db, actions) {
+
+	const serverSocket = socketio.listen(server)
+
+	serverSocket.on('connection', clientSocket => {
+
+		console.log(`Client connected ${clientSocket.id}`)
+
+		emitMessagesEvent(clientSocket, db)
+		listenMessageEvent(clientSocket, db, actions, serverSocket)
+		listenDisconnectEvent(clientSocket)
+	})
+}
+
 function emitMessagesEvent (socket, db) {
 
 	db.list((err, messages) => {
@@ -35,19 +51,5 @@ function listenDisconnectEvent (socket) {
 
 	socket.on('disconnect', () => {
 		console.log(`Client disconnected ${socket.id}`)
-	})
-}
-
-module.exports = function build (server, db, actions) {
-
-	const serverSocket = socketio.listen(server)
-
-	serverSocket.on('connection', clientSocket => {
-
-		console.log(`Client connected ${clientSocket.id}`)
-
-		emitMessagesEvent(clientSocket, db)
-		listenMessageEvent(clientSocket, db, actions, serverSocket)
-		listenDisconnectEvent(clientSocket)
 	})
 }
