@@ -1,9 +1,9 @@
 language: node_js
 node_js:
-- '8.11.3'
+- '12.18.0'
 notifications:
   email:
     recipients:
-    - juancsch@gmail.com
+      - juancsch@gmail.com
     on_success: change
     on_failure: always
