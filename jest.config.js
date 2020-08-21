@@ -1,8 +1,11 @@
 module.exports = {
+	transform: {
+		'^.+\\.ts?$': 'ts-jest'
+	},
+	// moduleFileExtensions: [ 'ts', 'js' ],
 	verbose: true,
 	coverageDirectory: 'coverage',
-	testMatch: [
-		'**/test/**/*.test.js'
-	],
-	testEnvironment: 'node'
+	coveragePathIgnorePatterns: ['<rootDir>/test', '<rootDir>/node_modules'],
+	testMatch: ['<rootDir>/test/**/*.test.ts'],
+	testEnvironment: 'node',
 }
