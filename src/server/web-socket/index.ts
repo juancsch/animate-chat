@@ -1,5 +1,5 @@
-import socketIO, { Socket } from "socket.io";
-import { Server as HttpServer } from "http";
+import socketIO, { Socket } from 'socket.io'
+import { Server as HttpServer } from 'http'
 
 import { saveMessage, listMessages } from '../modules/message'
 
@@ -15,16 +15,20 @@ function listen (server: HttpServer) {
 
 		console.log(`Client connected ${clientSocket.id}`)
 
-		emitMessagesEvent(clientSocket)
+		emitMessagesTo(clientSocket)
+
 		listenMessageEvent(clientSocket, serverSocket)
 		listenDisconnectEvent(clientSocket)
 	})
 }
 
-function emitMessagesEvent (socket: Socket) {
-	listMessages().then(
-		messages => socket.emit('messages', messages)
-	)
+function emitMessagesTo (socket: Socket) {
+	listMessages()
+		.then(
+			messages => socket.emit('messages', messages)
+		).catch(
+			err => socket.emit('error:messages', err)
+		)
 }
 
 function listenMessageEvent (clientSocket: Socket, socketServer: socketIO.Server) {
@@ -33,9 +37,12 @@ function listenMessageEvent (clientSocket: Socket, socketServer: socketIO.Server
 
 		console.log('msg received:', message)
 
-		saveMessage(message).then(() =>
-			socketServer.sockets.emit('message', message)
-		)
+		saveMessage(message)
+			.then(
+				() => socketServer.sockets.emit('message', message)
+			).catch(
+				err => socketServer.sockets.emit('error:messages', err)
+			)
 	})
 }
 

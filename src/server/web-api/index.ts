@@ -27,11 +27,11 @@ export default function () {
 }
 
 function notFoundHandler (req: Request, res: Response, next: NextFunction) {
-	next(new HttpError(HTTP_NOT_FOUND, `Not Found ${req.url} route`))
+	next(new HttpError(HTTP_NOT_FOUND, 'Not Found route'))
 }
 
 function errorHandler (err: HttpError, req: Request, res: Response, next: NextFunction) {
 	res.status(err.status || HTTP_SERVER_ERROR)
 		.set('Content-Type', 'text/plain')
-		.end(`${err.message} when ${req.url}`)
+		.end(`${err.message} when request ${req.method} ${req.url}`)
 }
