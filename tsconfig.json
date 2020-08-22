@@ -4,7 +4,7 @@
     "module": "commonjs",
     "sourceMap": true,
     "outDir": "server",
-    "rootDir": "src",
+    "rootDir": "src/server",
     "removeComments": true,
     "strict": true,
     "moduleResolution": "node",

@@ -9,9 +9,9 @@ describe('Messages repository', function () {
 
 		await db.clear()
 
-		await db.save(MessageVO('', '', {}))
-		await db.save(MessageVO('', '', {}))
-		await db.save(MessageVO('', '', {}))
+		await db.save(MessageVO('', 'one'))
+		await db.save(MessageVO('', 'two'))
+		await db.save(MessageVO('', 'three'))
 
 		const messages = await db.list()
 

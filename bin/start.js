@@ -1,16 +1,18 @@
-import http from 'http'
+#!/usr/bin/env node
 
-import webApiServer from './web-api'
-import webSocketServer from './web-socket'
+const http = require('http')
+
+const webApi = require('../server/web-api').default()
+const webSocket = require('../server/web-socket')
 
 const port = process.env.PORT || 8080
 
-const httpServer = http.createServer(webApiServer())
+const httpServer = http.createServer(webApi)
 
 httpServer.listen(port,() => {
 	console.log(`Server started on port ${port}`)
 })
-httpServer.on('error', (error: any) => {
+httpServer.on('error', (error) => {
 
 	if (error.syscall !== 'listen') {
 		throw error
@@ -20,17 +22,15 @@ httpServer.on('error', (error: any) => {
 		case 'EACCES':
 			console.error('Port requires elevated privileges')
 			process.exit(1)
-			break
 		case 'EADDRINUSE':
 			console.error('Port is already in use')
 			process.exit(1)
-			break
 		default:
 			throw error
 	}
 })
 
-webSocketServer.listen(httpServer)
+webSocket.listen(httpServer)
 
 process.on('SIGINT', doCloseAllConnection)  // ctrl + c
 process.on('SIGTERM', doCloseAllConnection) // kill pid

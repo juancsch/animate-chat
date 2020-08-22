@@ -26,22 +26,27 @@ export function MessagesLevelDBRepositoryFactory ({
 
 const save = (db: LevelUp, duration: number) => (message: Message): Promise<void> => {
 	const key = `message-${Date.now()}-${uuid.v4()}`
-	const opt = {
+	const options = {
 		valueEncoding: 'json',
 		ttl: duration
 	}
-
-	return db.put(key, message, opt)
+	return new Promise((resolve, reject) =>
+		db.put(key, message, options, err => {
+			if (err) return reject(err)
+			resolve()
+		})
+	)
 }
 
 const list = (db: LevelUp, limit: number) => (): Promise<any> => {
+	const options = {
+		limit,
+		valueEncoding: 'json',
+		reverse: true,
+		gt: 'message'
+	}
 	return new Promise((resolve, reject) => {
-		db.createValueStream({
-			limit,
-			valueEncoding: 'json',
-			reverse: true,
-			gt: 'message'
-		})
+		db.createValueStream(options)
 		.pipe(concat(resolve))
 		.on('error', reject)
 	})

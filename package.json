@@ -9,8 +9,8 @@
     "node": "12.18.0"
   },
   "scripts": {
-    "build-client": "webpack --progress --colors",
-    "start": "npm run build-client && npm run compile && PORT=8080 node server/start.js &",
+    "build:client": "webpack --progress --colors",
+    "start": "npm run build:client && npm run start:server &",
     "stop": "kill $(lsof -t -i:8080)",
     "pretest": "npm start --silent &",
     "test": "sleep 10 && chimp --browser=phantomjs --mocha --path=test-integration",
@@ -20,9 +20,8 @@
     "heroku-postbuild": "npm run build-client",
     "lint:client": "eslint --fix ./public",
     "lint:server": "tslint --fix ./src/server",
-    "server:dev": "tsnd --respawn src/start.ts",
-    "compile": "npm run clean && npm i && tsc -p .",
-    "clean": "rm -rf server"
+    "start:server": "npm run compile && PORT=8080 bin/start.js",
+    "compile": "rm -rf server && tsc -p ."
   },
   "dependencies": {
     "async": "^2.0.1",
@@ -41,11 +40,14 @@
     "webrtc2images": "^1.4.4"
   },
   "devDependencies": {
+    "@types/body-parser": "1.19.0",
     "@types/concat-stream": "1.6.0",
+    "@types/express": "4.17.7",
     "@types/jest": "26.0.10",
-    "@types/levelup": "4.3.0",
     "@types/level-ttl": "3.1.0",
+    "@types/levelup": "4.3.0",
     "@types/node": "14.6.0",
+    "@types/socket.io": "2.1.11",
     "@types/uuid": "8.3.0",
     "eslint-config-prettier": "6.11.0",
     "eslint-plugin-jsdoc": "29.1.3",

@@ -6,9 +6,6 @@ export function SaveMessagesFactory (messageRepository: MessagesRepository) {
 
 		// generate video from images frames
 
-		return messageRepository.save({
-			id: message.id,
-			message: message.message
-		})
+		return messageRepository.save(message)
 	}
 }
