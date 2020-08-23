@@ -1,6 +1,28 @@
 import EventEmitter from 'events'
 import io from 'socket.io-client'
 
+export default function (sessionId) {
+	const socket = io.connect()
+	return buildModel(sessionId, socket)
+}
+
+function buildModel (sessionId, socket) {
+
+	const model = {
+		update (message) {
+			console.log('sending:', message)
+			emitMessage(sessionId, socket, message)
+		}
+	}
+
+	Object.assign(model, EventEmitter.prototype)
+	EventEmitter.call(model)
+
+	subscribeTo(socket, model)
+
+	return model
+}
+
 function emitMessage (sessionId, socket, message) {
 
     socket.emit('message', {
@@ -35,25 +57,3 @@ function subscribeTo (socket, model) {
 //         emitMessage(this._sessionId, this._socket, message)
 //     }
 // }
-
-function buildModel (sessionId, socket) {
-
-    const model = {
-        update (message) {
-            console.log('sending:', message)
-            emitMessage(sessionId, socket, message)
-        }
-    }
-
-    Object.assign(model, EventEmitter.prototype)
-    EventEmitter.call(model)
-
-    subscribeTo(socket, model)
-
-    return model
-}
-
-export default function (sessionId) {
-    const socket = io.connect()
-    return buildModel(sessionId, socket)
-}

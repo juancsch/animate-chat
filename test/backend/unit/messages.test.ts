@@ -1,6 +1,6 @@
-import { ListMessagesFactory } from "../../../src/server/modules/message/application/ListMessages";
-import { SaveMessagesFactory } from "../../../src/server/modules/message/application/SaveMessage";
-import { MessagesRepository } from "../../../src/server/modules/message/domain/MessagesRepository";
+import { ListMessagesFactory } from "../../../src/backend/modules/message/application/ListMessages";
+import { SaveMessagesFactory } from "../../../src/backend/modules/message/application/SaveMessage";
+import { MessagesRepository } from "../../../src/backend/modules/message/domain/MessagesRepository";
 
 describe('Messages management', function () {
 

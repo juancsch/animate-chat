@@ -19,14 +19,14 @@
     "test:ui": "sleep 10 && chimp --browser=phantomjs --mocha --path=test/client/*",
     "posttest:ui": "npm stop",
     "pretest:acceptance": "npm run start:server --silent &",
-    "test:acceptance": "sleep 10 && jest --verbose --runTestsByPath test/server/acceptance/* --detectOpenHandles",
+    "test:acceptance": "sleep 10 && jest --verbose --runTestsByPath test/backend/acceptance/* --detectOpenHandles",
     "posttest:acceptance": "npm stop",
-    "test:integration": "jest --verbose --runTestsByPath test/server/integration/*",
-    "test:unit": "jest --verbose --runTestsByPath test/server/unit/*",
-    "test": "npm run test:unit && npm run test:integration && npm run test:acceptance && npm run test:ui",
+    "test:integration": "jest --verbose --runTestsByPath test/backend/integration/*",
+    "test:unit": "jest --verbose --runTestsByPath test/backend/unit/*",
+    "test": "npm run test:unit && npm run test:integration && npm run test:acceptance",
     "tdd": "npm run test:unit -- --watch",
     "lint:client": "eslint --fix ./public",
-    "lint:server": "tslint --fix ./src/server"
+    "lint:server": "tslint --fix src/backend"
   },
   "dependencies": {
     "async": "^2.0.1",

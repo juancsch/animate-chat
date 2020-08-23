@@ -1,5 +1,5 @@
-import { MessagesLevelDBRepositoryFactory } from '../../../src/server/modules/message/infraestructure/messages-leveldb-repository'
-import { MessageVO } from "../../../src/server/modules/message/domain/Message";
+import { MessagesLevelDBRepositoryFactory } from '../../../src/backend/modules/message/infraestructure/messages-leveldb-repository'
+import { MessageVO } from "../../../src/backend/modules/message/domain/Message";
 
 describe('Messages repository', function () {
 

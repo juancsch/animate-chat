@@ -1,6 +1,6 @@
 import io from 'socket.io-client'
 
-import { Message } from '../../../src/server/modules/message/domain/Message'
+import { Message } from '../../../src/backend/modules/message/domain/Message'
 
 describe('Socket server', function () {
 
