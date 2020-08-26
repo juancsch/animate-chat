@@ -9,7 +9,8 @@
     "strict": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "types": ["node", "@wdio/sync", "@wdio/mocha-framework"]
   },
   "include": [
     "src/**/*.ts"

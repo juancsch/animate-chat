@@ -2,13 +2,13 @@
 
 # animate-chat
 
-Un chat en tiempo real usando gif animados como videos
+Un chat en tiempo real usando gif animados
 
 # Tecnologías usadas
 
-es6/2015, node y npm scripts
+Typescript
 
-Cliente: basada en una arquitectura MVVM
+Cliente: basada en una arquitectura ???
 * webpack
 * socketio
 * handlebars
@@ -23,8 +23,9 @@ Servidor: basada en una arquitectura hexagonal
 * ffmpeg: programa externo
 ...
 
-Testing y CI:
-* chimp: mocha, selenium, webdriverio, ...
+Testing, E2E y CI:
+* jest
+* webdriverio
 * travis-ci
 
 # Despliegue en cloud
@@ -33,4 +34,4 @@ Heroku: [animate-chat](https://animate-chat.herokuapp.com/)
 
 ## Disclaimer
 
-Este código esta inspirado en el magnifico [chat.meatspac.es](https://github.com/meatspaces/meatspace-chat-v2/) y su uso para fines didacticos
+Este código esta inspirado en [chat.meatspac.es](https://github.com/meatspaces/meatspace-chat-v2/) y su uso para fines didacticos

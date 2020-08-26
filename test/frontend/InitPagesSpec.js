@@ -3,7 +3,7 @@ describe('Animate chat expectations', () => {
 
     describe('When index page', () => {
 
-        it('should be set initial @watch', () => {
+        xit('should be set initial @watch', () => {
 
             browser.url('http://localhost:8080')
 
