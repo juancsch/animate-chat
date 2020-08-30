@@ -6,21 +6,22 @@ Un chat en tiempo real usando gif animados
 
 # Tecnologías usadas
 
-Typescript
-
-Cliente: basada en una arquitectura ???
+Cliente: basada en una arquitectura hexagonal
 * webpack
+* babel
+* eslint
 * socketio
 * handlebars
 * webrtc
-* babel
 ...
 
 Servidor: basada en una arquitectura hexagonal
+* typescript
+* tslint
 * express
 * socketio
 * leveldb
-* ffmpeg: programa externo
+* ffmpeg
 ...
 
 Testing, E2E y CI:

@@ -1,5 +1,9 @@
 .idea
 node_modules
-public/js/app.bundle.js
+
+frontend/public/js/app.bundle.js
+server
+z_code
+
 *.log
 *.db

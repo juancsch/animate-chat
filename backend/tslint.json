@@ -1,0 +1,13 @@
+{
+    "defaultSeverity": "error",
+    "extends": ["tslint-config-standard", "tslint-config-prettier"],
+    "rulesDirectory": ["tslint-plugin-prettier"],
+    "rules": {
+      "ter-indent": [true, "tab"],
+      "semicolon": [false, "always"],
+      "object-curly-spacing": ["error", "never"]
+    },
+    "linterOptions": {
+      "exclude": ["node_modules"]
+    }
+}
