@@ -18,8 +18,8 @@
     "test:frontend": "npm test --prefix frontend",
     "test:backend": "npm test --prefix backend",
     "lint:fix": "run-p lint:fix:frontend lint:fix:backend",
-    "lint:fix:frontend": "npm run lint --prefix frontend",
-    "lint:fix:backend": "npm run lint --prefix backend",
+    "lint:fix:frontend": "npm run lint:fix --prefix frontend",
+    "lint:fix:backend": "npm run lint:fix --prefix backend",
     "heroku:postbuild": "npm run build"
   },
   "devDependencies": {
@@ -28,7 +28,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm test"
+      "pre-push": "npm test",
+      "pre-commit": "npm run lint:fix"
     }
   }
 }
