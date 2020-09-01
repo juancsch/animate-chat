@@ -1,25 +1,27 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-magic-numbers */
 
-describe('Animate chat expectations', function () {
+describe('Animate Chat', function () {
 
     describe('When index page', () => {
 
         it('should be set initial @watch', () => {
-            browser.url('http://localhost:8080')
 
+            browser.url('http://localhost:8080')
             expect(browser).toHaveTitle('New Animate Chat')
-            expect($('input[name="message"]')).toBeFocused()
+
+			const msgBox = $('input[name="message"]')
+            expect(msgBox).toBeFocused()
         })
 
-        xit('should show sending message when submit form @watch', () => {
+        it('should show sending message when submit form @watch', () => {
 
             browser.url('http://localhost:8080')
-                .setValue('input[name="message"]', 'my message')
-                .submitForm('form[name="sender_msg"]')
 
-            expect(browser.getCssProperty('#alert', 'display').value)
-                .to.equal('block')
+			$('input[name="message"]').setValue('my message')
+			$('input[name="send_msg"]').click()
+
+            expect($('#alert')).toBeDisplayed()
         })
 
         xit('should show the same message sended @watch', () => {
@@ -28,19 +30,14 @@ describe('Animate chat expectations', function () {
 
             browser.url('http://localhost:8080')
 
-            const numMsgs = browser.elements('ul#messages>li').value.length
-            // console.log('*** msgs', browser.elements('ul#messages'), browser.elements('ul#messages>li'))
+            const numMsgs = $$('ul#messages>li').length
+            console.log('*** msgs', numMsgs)
 
-            browser
-                .setValue('input[name="message"]', msgSended)
-                .submitForm('form[name="sender_msg"]')
-                .waitUntil(() => {
-                    return numMsgs < browser.elements('ul#messages>li').value.length
-                }, 10000)
+			$('input[name="message"]').setValue(msgSended)
+			$('input[name="send_msg"]').click()
 
-            const printerMsg = browser.getValue('ul#messages>li:last-child>p')
-
-            expect(printerMsg).to.equal(msgSended)
+            const lastEleMsgs = $('ul#messages>li:last-child>p')
+            expect(lastEleMsgs).toHaveValue(msgSended)
         })
     })
 })

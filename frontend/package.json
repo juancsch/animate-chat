@@ -13,7 +13,7 @@
     "lint": "eslint ./src ./test",
     "lint:fix": "npm run lint -- --fix",
     "pretest": "serve -l 8080 public &",
-    "test": "wdio wdio.conf.js",
+    "test": "wdio wdio.conf.js || kill $(lsof -t -i:8080)",
     "posttest": "kill $(lsof -t -i:8080)"
   },
   "dependencies": {
@@ -25,7 +25,6 @@
     "webrtc2images": "^1.4.4"
   },
   "devDependencies": {
-    "@testing-library/dom": "^7.23.0",
     "@wdio/cli": "6.4.0",
     "@wdio/local-runner": "6.4.0",
     "@wdio/mocha-framework": "6.4.0",

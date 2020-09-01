@@ -5,14 +5,15 @@ export function SendMessageFactory (connection) {
 
 	const sessionId = uuid.v4()
 	// const wrtc = Webrtc2Images()
+	const frames = undefined
 
 	return message => {
 		// wrtc.recordVideo(function (err, frames) {
 		//	if (err) return console.error(err)
-		connection.emit('message', {
-			id: sessionId,
-			message,
-			frames: undefined
+			connection.emit('message', {
+				id: sessionId,
+				message,
+				frames
 		})
 		// })
 	}
