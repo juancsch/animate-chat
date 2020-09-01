@@ -1,5 +1,5 @@
 import request from 'supertest'
-import { Application } from "express";
+import { Application } from 'express'
 import webApi from '../../src/web-api'
 
 describe('Web API', function () {

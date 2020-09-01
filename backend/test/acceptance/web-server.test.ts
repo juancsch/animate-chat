@@ -14,7 +14,7 @@ describe('Web API', function () {
 	it('should not found request uri', async () => {
 
 		try {
-			await axios.get("http://localhost:8080/no-exists");
+			await axios.get('http://localhost:8080/no-exists')
 		} catch (err) {
 			expect(err.response.status).toEqual(404)
 			expect(err.response.headers['content-type']).toEqual('text/plain; charset=utf-8')

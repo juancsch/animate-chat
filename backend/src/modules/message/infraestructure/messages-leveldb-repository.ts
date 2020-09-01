@@ -5,13 +5,13 @@ import ttl from 'level-ttl'
 import uuid from 'uuid'
 import concat from 'concat-stream'
 
-import { Message } from "../domain/Message";
-import { MessagesRepository } from "../domain/MessagesRepository";
+import { Message } from '../domain/Message'
+import { MessagesRepository } from '../domain/MessagesRepository'
 
 export function MessagesLevelDBRepositoryFactory ({
 	  	databaseName = 'messages.db',
 	  	duration = 10 * 60 * 1000,
-		limit = 10 } = {}) : MessagesRepository {
+		limit = 10 } = {}): MessagesRepository {
 
 	const db = ttl(level(databaseName), {
 		checkFrequency: 10000

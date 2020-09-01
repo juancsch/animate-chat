@@ -3,7 +3,7 @@ import bodyParser from 'body-parser'
 import express, { NextFunction, Request, Response } from 'express'
 
 import { ImagesProcessController } from './controllers/images-process'
-import { HttpError } from "./HttpError";
+import { HttpError } from './HttpError'
 
 const HTTP_NOT_FOUND = 404
 const HTTP_SERVER_ERROR = 500

@@ -1,7 +1,7 @@
-import { Message } from "./Message";
+import { Message } from './Message'
 
 export interface MessagesRepository {
-	list () : Promise<Message[]>,
-	save (message: Message) : Promise<void>,
-	clear () : Promise<void>
+	list (): Promise<Message[]>,
+	save (message: Message): Promise<void>,
+	clear (): Promise<void>
 }

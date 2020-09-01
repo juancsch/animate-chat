@@ -1,5 +1,5 @@
-import { MessagesRepository } from "../domain/MessagesRepository";
-import { Message } from "../domain/Message";
+import { MessagesRepository } from '../domain/MessagesRepository'
+import { Message } from '../domain/Message'
 
 export function SaveMessagesFactory (messageRepository: MessagesRepository) {
 	return (message: Message): Promise<void> => {

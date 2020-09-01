@@ -1,5 +1,5 @@
-import express, { Request, Response, NextFunction } from "express";
-import { HttpError } from "../HttpError";
+import express, { Request, Response, NextFunction } from 'express'
+import { HttpError } from '../HttpError'
 
 export function ImagesProcessController () {
 
