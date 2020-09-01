@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/juancsch/animate-chat.svg?branch=master)](https://travis-ci.org/juancsch/animate-chat)
+[![codecov.io](https://img.shields.io/codecov/c/github/juancsch/animate-chat/master.svg)](http://codecov.io/github/juancsch/animate-chat?branch=master)
 
 # animate-chat
 

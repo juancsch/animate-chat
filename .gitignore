@@ -1,9 +1,12 @@
 .idea
 node_modules
 
-frontend/public/js/app.bundle.js
-server
-z_code
-
 *.log
-*.db
+
+frontend/public/js/app.bundle.js
+
+backend/coverage
+backend/server
+backend/messages.db
+
+z_code
