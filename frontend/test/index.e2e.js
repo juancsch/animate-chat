@@ -1,4 +1,5 @@
 /* eslint-disable no-undef */
+/* eslint-disable no-magic-numbers */
 
 describe('Animate chat expectations', function () {
 

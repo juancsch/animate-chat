@@ -1,10 +1,10 @@
 import uuid from 'uuid'
-import Webrtc2Images from '../dominio/Webrtc2Images'
+// import Webrtc2Images from '../dominio/Webrtc2Images'
 
 export function SendMessageFactory (connection) {
 
 	const sessionId = uuid.v4()
-	const wrtc = Webrtc2Images()
+	// const wrtc = Webrtc2Images()
 
 	return message => {
 		// wrtc.recordVideo(function (err, frames) {

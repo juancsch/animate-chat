@@ -11,31 +11,29 @@ const ui = {
 
 export function MessageView ({ send, bus }) {
 
-	ui.msgBox.addEventListener('submit', function (ev) {
+	ui.msgBox.addEventListener('submit', submitListener, false)
+	bus.on('message', addMessage)
+	bus.on('messages', addMessages)
+
+	function submitListener (ev) {
 
 		ev.preventDefault()
 
-		printSend('block')
-		const message = ui.input.value
+		ui.alert.style.display = 'block'
+
+		window.scrollTo(0, document.body.scrollHeight)
+
+		send(ui.input.value)
 		ui.input.value = ''
+	}
 
-		send(message)
-
-	}, false)
-
-	bus.on('message', addMessage)
-
-	bus.on('messages', (messages) => {
+	function addMessages (messages) {
 		messages.forEach(addMessage)
-	})
-}
+	}
 
-function addMessage (message) {
-	ui.messages.appendChild(domify(messageTpl(message)))
-	printSend('none')
-}
-
-function printSend (display) {
-	ui.alert.style.display = display
-	window.scrollTo(0, document.body.scrollHeight)
+	function addMessage (message) {
+		ui.messages.appendChild(domify(messageTpl(message)))
+		ui.alert.style.display = 'none'
+		window.scrollTo(0, document.body.scrollHeight)
+	}
 }
