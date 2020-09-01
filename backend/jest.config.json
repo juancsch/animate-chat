@@ -1,0 +1,9 @@
+{
+	"transform": {
+		"^.+\\.ts?$": "ts-jest"
+	},
+	"verbose": true,
+	"coveragePathIgnorePatterns": ["<rootDir>/test", "<rootDir>/node_modules"],
+	"testMatch": ["<rootDir>/test/**/*.test.ts"],
+	"testEnvironment": "node"
+}

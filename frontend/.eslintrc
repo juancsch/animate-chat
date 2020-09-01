@@ -1,0 +1,17 @@
+{
+  "extends": ["standard"],
+  "env": {
+    "node": true
+  },
+  "plugins": ["jsdoc"],
+  "rules": {
+    "semi": ["error", "never"],
+    "indent": "off",
+    "no-tabs": "off",
+    "padded-blocks": "off",
+    "operator-linebreak": "off",
+    "arrow-parens": ["error", "as-needed"],
+    "no-magic-numbers": ["warn", { "ignore": [0, 1] }],
+    "prefer-promise-reject-errors": "error"
+  }
+}

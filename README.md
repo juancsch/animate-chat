@@ -1,30 +1,33 @@
 [![Build Status](https://travis-ci.org/juancsch/animate-chat.svg?branch=master)](https://travis-ci.org/juancsch/animate-chat)
+[![codecov.io](https://img.shields.io/codecov/c/github/juancsch/animate-chat/master.svg)](http://codecov.io/github/juancsch/animate-chat?branch=master)
 
 # animate-chat
 
-Un chat en tiempo real usando gif animados como videos
+Un chat en tiempo real usando gif animados
 
 # Tecnologías usadas
 
-es6/2015, node y npm scripts
-
-Cliente: basada en una arquitectura MVVM
+Cliente: basada en una arquitectura hexagonal
 * webpack
+* babel
+* eslint
 * socketio
 * handlebars
 * webrtc
-* babel
 ...
 
 Servidor: basada en una arquitectura hexagonal
+* typescript
+* tslint
 * express
 * socketio
 * leveldb
-* ffmpeg: programa externo
+* ffmpeg
 ...
 
-Testing y CI:
-* chimp: mocha, selenium, webdriverio, ...
+Testing, E2E y CI:
+* jest
+* webdriverio
 * travis-ci
 
 # Despliegue en cloud
@@ -33,4 +36,4 @@ Heroku: [animate-chat](https://animate-chat.herokuapp.com/)
 
 ## Disclaimer
 
-Este código esta inspirado en el magnifico [chat.meatspac.es](https://github.com/meatspaces/meatspace-chat-v2/) y su uso para fines didacticos
+Este código esta inspirado en [chat.meatspac.es](https://github.com/meatspaces/meatspace-chat-v2/) y su uso para fines didacticos
