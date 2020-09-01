@@ -13,7 +13,7 @@
     "lint": "eslint ./src ./test",
     "lint:fix": "npm run lint -- --fix",
     "pretest": "serve -l 8080 public &",
-    "test": "wdio wdio.conf.js || kill $(lsof -t -i:8080)",
+    "test": "wdio wdio.conf.js",
     "posttest": "kill $(lsof -t -i:8080)"
   },
   "dependencies": {

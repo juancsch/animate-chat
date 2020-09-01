@@ -14,7 +14,7 @@
     "start": "run-s build:frontend start:backend",
     "build:frontend": "npm run build --prefix frontend",
     "start:backend": "npm start --prefix backend",
-    "test": "run-s test:frontend test:backend",
+    "test": "run-s test:backend",
     "test:frontend": "npm test --prefix frontend",
     "test:backend": "npm test --prefix backend",
     "lint:fix": "run-p lint:fix:frontend lint:fix:backend",
