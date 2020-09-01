@@ -8,9 +8,10 @@
     "node": "12.18.0"
   },
   "scripts": {
-    "start": "npm run compile && PORT=8080 node server/start.js",
+    "start:server": "node server/start.js",
+    "start": "npm run build && npm run start:server",
     "stop": "kill $(lsof -t -i:8080)",
-    "compile": "rm -rf server && tsc -p .",
+    "build": "rm -rf server && tsc -p .",
     "lint": "tslint src/**/*.ts test/**/*.ts",
     "lint:fix": "npm run lint -- --fix",
     "pretest:acceptance": "npm run start --silent &",

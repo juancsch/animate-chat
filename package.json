@@ -11,16 +11,16 @@
     "postinstall": "run-p install:frontend install:backend",
     "install:frontend": "cd frontend && npm install",
     "install:backend": "cd backend && npm install",
-    "start": "run-s build:frontend start:backend",
-    "build:frontend": "npm run build --prefix frontend",
-    "start:backend": "npm start --prefix backend",
     "test": "run-s test:backend",
     "test:frontend": "npm test --prefix frontend",
     "test:backend": "npm test --prefix backend",
     "lint:fix": "run-p lint:fix:frontend lint:fix:backend",
     "lint:fix:frontend": "npm run lint:fix --prefix frontend",
     "lint:fix:backend": "npm run lint:fix --prefix backend",
-    "heroku:postbuild": "npm run build"
+    "heroku-postbuild": "run-s build:frontend build:backend",
+    "build:frontend": "npm run build --prefix frontend",
+    "build:backend": "npm run build --prefix backend",
+    "start:server": "npm run start:server --prefix backend"
   },
   "devDependencies": {
     "husky": "4.2.5",
